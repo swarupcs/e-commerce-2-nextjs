@@ -1,14 +1,15 @@
 export interface Products {
-  _id: number;
+  id: number;
   title: string;
-  isNew: boolean;
-  oldPrice: number;
-  price: number;
   description: string;
-  category: string;
-  image: string;
+  price: number;
+  discountPercentage: number;
   rating: number;
-  quantity: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
 }
 
 export interface ItemProps {
