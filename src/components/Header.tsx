@@ -48,7 +48,7 @@ const Header = () => {
       return;
     });
     setTotalAmt(amt);
-    console.log(amt)
+    // console.log(amt)
   }, [productData]);
 
   return (

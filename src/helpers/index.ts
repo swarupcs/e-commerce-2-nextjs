@@ -31,7 +31,7 @@ export const getProducts = async () => {
 
   export const getSingleProudct = async (_id: number) => {
     try {
-      const res = await fetch("https://dummyjson.com/products?limit=10");
+      const res = await fetch("https://dummyjson.com/products?limit=100");
       if (!res.ok) {
         throw new Error("Failed to fetch product list");
       }
