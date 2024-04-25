@@ -29,19 +29,45 @@ export const getProducts = async () => {
       : 0;
   };
 
-  export const getSingleProudct = async (_id: number) => {
-    try {
-      const res = await fetch("https://dummyjson.com/products?limit=100");
-      if (!res.ok) {
-        throw new Error("Failed to fetch product list");
-      }
-      const productData = await res.json(); // Extract JSON data from response
-      console.log(productData); // Log the product list
-      const item = productData.products.find((product: any) => product.id === _id); // Find the product by _id
-      return item;
-    } catch (error) {
-      console.error("Error fetching product:", error);
-      return null; // Return null if there's an error
+// In helpers.ts file
+
+// export const getSingleProduct = (_id: number) => {
+  
+//   const item = productData.find((product) => product._id === _id);
+//   return item;
+// };
+
+
+export const getSingleProduct = async (_id: number) => {
+  try {
+    // Fetch product data from the API
+    const res = await fetch("https://dummyjson.com/products?limit=100");
+    if (!res.ok) {
+      throw new Error("Failed to fetch product details");
     }
-  };
+    const responseData = await res.json();
+    // console.log("Response data:", responseData); // Log the response data
+
+    // Check if the response contains products
+    if (!responseData || !responseData.products || !Array.isArray(responseData.products)) {
+      throw new Error("Invalid response from the server");
+    }
+
+    // Find the product with the specified _id
+    const item = responseData.products.find((product: any) => product.id === _id);
+    // console.log("Found item:", item); // Log the found item
+    return item;
+  } catch (error) {
+    console.error("Error fetching product details:", error);
+    return null;
+  }
+};
+
+
+
+
+
+
+  
+  
   
