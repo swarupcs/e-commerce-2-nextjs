@@ -3,7 +3,7 @@ import { productData } from "@/constants/data";
 export const getProducts = async () => {
     // const res = await fetch("https://fakestoreapiserver.reactbd.com/smart");
     // const res = await fetch("http://localhost:3000/api/products");
-    const res = await fetch("https://dummyjson.com/products?limit=10");
+    const res = await fetch("https://dummyjson.com/products?limit=100");
     if (!res.ok) {
       throw new Error("Faild to fetch products");
     }
