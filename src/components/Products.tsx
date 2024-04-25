@@ -1,5 +1,7 @@
 "use client"
 
+// ProductsPage.jsx
+
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import ProductsData from "./ProductsData";
@@ -74,7 +76,14 @@ const ProductsPage = () => {
           ))}
         </div>
         {/* Pagination */}
-        <div className="mt-4 flex justify-center">
+        <div className="mt-4 flex justify-center items-center">
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="mx-2 px-4 py-2 rounded-md bg-blue-500 text-white"
+          >
+            Prev
+          </button>
           {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => (
             <button
               key={i}
@@ -86,6 +95,13 @@ const ProductsPage = () => {
               {i + 1}
             </button>
           ))}
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage)}
+            className="mx-2 px-4 py-2 rounded-md bg-blue-500 text-white"
+          >
+            Next
+          </button>
         </div>
       </div>
     </Container>
@@ -93,5 +109,6 @@ const ProductsPage = () => {
 };
 
 export default ProductsPage;
+
 
 
