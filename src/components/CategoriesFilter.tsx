@@ -1,7 +1,6 @@
 "use client"
 
 
-// CategoriesFilter.jsx
 import React, { useEffect, useState } from "react";
 import { getProducts } from "@/helpers";
 
@@ -15,7 +14,7 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
     const fetchData = async () => {
       try {
         const data = await getProducts();
-        const uniqueCategories = [...new Set(data.products.map((product) => product.category))];
+        const uniqueCategories = [...new Set(data.products.map((product) => toTitleCase(product.category)))];
         const uniqueBrands = [...new Set(data.products.map((product) => product.brand))];
         setCategories(uniqueCategories);
         setBrands(uniqueBrands);
@@ -27,13 +26,19 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
     fetchData();
   }, []);
 
+  // Function to convert string to title case
+  const toTitleCase = (str) => {
+    return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
   const handleCategoryChange = (category) => {
-    if (category === selectedCategory) {
+    const lowerCaseCategory = category.toLowerCase();
+    if (lowerCaseCategory === selectedCategory) {
       setSelectedCategory(null);
       onSelectCategory(null);
     } else {
-      setSelectedCategory(category);
-      onSelectCategory(category);
+      setSelectedCategory(lowerCaseCategory);
+      onSelectCategory(lowerCaseCategory);
     }
   };
 
@@ -52,17 +57,18 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
       <h2 className="text-xl font-semibold mb-2">Categories:</h2>
       <ul className="divide-y divide-gray-200">
         {categories.map((category, index) => (
-          <li key={index} className="py-2">
+          <li key={index} className="py-2 flex items-center">
             <input
               type="checkbox"
               id={`category-${index}`}
               value={category}
-              checked={category === selectedCategory}
+              checked={category.toLowerCase() === selectedCategory}
               onChange={() => handleCategoryChange(category)}
             />
             <label htmlFor={`category-${index}`} className="ml-2">
               {category}
             </label>
+
           </li>
         ))}
       </ul>
@@ -70,7 +76,7 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
       <h2 className="text-xl font-semibold mt-4 mb-2">Brands:</h2>
       <ul className="divide-y divide-gray-200">
         {brands.map((brand, index) => (
-          <li key={index} className="py-2">
+          <li key={index} className="py-2 flex items-center">
             <input
               type="checkbox"
               id={`brand-${index}`}
@@ -81,6 +87,7 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
             <label htmlFor={`brand-${index}`} className="ml-2">
               {brand}
             </label>
+
           </li>
         ))}
       </ul>
@@ -89,6 +96,5 @@ const CategoriesFilter = ({ onSelectCategory, onSelectBrand }) => {
 };
 
 export default CategoriesFilter;
-
 
 
