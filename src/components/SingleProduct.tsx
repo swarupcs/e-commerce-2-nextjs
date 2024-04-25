@@ -10,17 +10,22 @@ import toast, { Toaster } from "react-hot-toast";
 
 const SingleProduct = ({ product }: any) => {
   const dispatch = useDispatch();
+  // console.log(product);
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
+      
+      {product.title}
       <div>
         <Image
-          src={product?.image}
+          src={product?.thumbnail}
           alt="product image"
           width={500}
           height={500}
           className="w-full max-h-[700px] object-cover rounded-lg"
         />
       </div>
+
+      
       <div className="flex flex-col justify-center gap-y-10">
         <div>
           <p className="text-3xl font-semibold">{product?.title}</p>
@@ -31,7 +36,7 @@ const SingleProduct = ({ product }: any) => {
         <p className="text-lightText">{product?.description}</p>
         <div className="text-sm text-lightText flex flex-col">
           <span>
-            SKU: <span className="text-darkText">{product?._id}</span>
+            SKU: <span className="text-darkText">{product?.stock}</span>
           </span>
           <span>
             Category: <span className="text-darkText">{product?.category}</span>

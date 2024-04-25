@@ -10,6 +10,7 @@ export interface Products {
   category: string;
   thumbnail: string;
   images: string[];
+  quantity: number;
 }
 
 export interface ItemProps {

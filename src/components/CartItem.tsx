@@ -30,13 +30,13 @@ const CartItem = () => {
           >
             <div className="flex items-center gap-x-3 w-full md:w-1/3">
               <span
-                onClick={() => dispatch(deleteProduct(item?._id))}
+                onClick={() => dispatch(deleteProduct(item?.id))}
                 className="text-lg hover:text-red-600 cursor-pointer duration-200"
               >
                 <AiOutlineClose />
               </span>
               <Image
-                src={item?.image}
+                src={item?.thumbnail}
                 width={500}
                 height={500}
                 alt="product image"
