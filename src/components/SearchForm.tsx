@@ -7,7 +7,7 @@ const SearchForm = () => {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         // Redirect to search page with the search query as a parameter
         if (searchQuery.trim() !== '') {
@@ -16,7 +16,7 @@ const SearchForm = () => {
       };
 
 
-      const handleChange = async (e) => {
+      const handleChange = async (e: any) => {
         const query = e.target.value.trim();
         setSearchQuery(query);
         if (query === '') {
@@ -31,7 +31,7 @@ const SearchForm = () => {
           }
           const products = await res.json();
           // Filter products based on the search query
-          const filteredProducts = products.filter((product) =>
+          const filteredProducts = products.filter((product: any) =>
             product.title.toLowerCase().includes(query.toLowerCase())
           );
           setSuggestions(filteredProducts);
@@ -41,7 +41,7 @@ const SearchForm = () => {
         }
       };
   return (
-    <div className="w-full hidden md:flex items-center gap-x-1 border-0 border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
+    <>
       <form className="max-w-md mx-auto w-full" onSubmit={handleSubmit}>
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
@@ -73,15 +73,15 @@ const SearchForm = () => {
             onChange={handleChange}
             required
           />
-          {suggestions.length > 0 && (
+          {/* {suggestions.length > 0 && (
             <ul className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg divide-y divide-gray-200 dark:bg-slate-800 dark:border-gray-700 dark:divide-gray-700">
               {suggestions.map((product) => (
-                <li key={product.id} className="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-900">
-                  {product.title}
+                <li key={product?.id} className="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-900">
+                  {product?.title}
                 </li>
               ))}
             </ul>
-          )}
+          )} */}
           <button
             type="submit"
             className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -90,7 +90,7 @@ const SearchForm = () => {
           </button>
         </div>
       </form>
-    </div>
+    </>
   )
 }
 

@@ -54,9 +54,10 @@ const Header = () => {
       <Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
         <Logo />
         {/* Search Field */}
-        {/* <div> */}
+        <div className="w-full hidden md:flex items-center gap-x-1 border-0 border-lightText/50 rounded-full px-4 py-1.5 focus-within:border-orange-600 group">
 
-        <SearchForm />
+        {/* <SearchForm /> */}
+        </div>
         {/* Login / Register */}
         {!session && (
           <div
