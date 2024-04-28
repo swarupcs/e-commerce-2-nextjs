@@ -21,6 +21,7 @@ const ProductPage = ({ searchParams }: Props) => {
             try {
                 const productData = await getSingleProduct(_id);
                 setProduct(productData);
+                console.log(productData);
             } catch (error) {
                 console.error("Error fetching product:", error);
             }
@@ -36,7 +37,7 @@ const ProductPage = ({ searchParams }: Props) => {
     return (
         <div>
             <Container>
-                {console.log(product)}
+                
                 {product && <SingleProduct product={product} />}
                 {/* <div>
                     <p className="text-xl py-1 font-semibold">Tranding Products</p>
